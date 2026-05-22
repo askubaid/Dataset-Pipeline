@@ -1,14 +1,14 @@
 # Dataset Pipeline
 
-A comprehensive Python pipeline for generating multilingual language learning datasets with AI-powered example generation and theme enrichment.
+This is our pipeline for generating multilingual synthetic datasets, AI-powered, which is part of a semester project in the Institute of Space technology Islamabad supervised by Doctor Madihar Tahir. The team comprized of four members. Ubaid ur Rehman, Hafsa Ayub, Iqra Younas and Hajra Shahid. 
 
 ## Overview
 
-This project automates the creation of language learning datasets by:
+This part of the project automates the creation of language datasets by:
 1. **Parsing themes** from an Excel source file
 2. **Generating sample examples** for each theme using AI models
 3. **Enriching themes** with granular sub-topics
-4. **Creating multilingual datasets** with sentence pairs for language learning
+4. **Creating multilingual datasets** with sentence pairs for Synthetic Dataset Generation.
 
 The pipeline supports both **local inference** (using Ollama) and **cloud API** (using Google Gemini) for maximum flexibility.
 
@@ -22,7 +22,7 @@ The pipeline supports both **local inference** (using Ollama) and **cloud API** 
 | **m2_gen_examples_local.py** | Generates sample examples for each theme using a local Ollama model |
 | **m3_generate_examples_API.py** | Generates sample examples using Google Gemini API (alternative to local) |
 | **m4_granularize.py** | Adds 20 sub-topics to each theme for more granular categorization |
-| **m5_gen_dataset.py** | Generates multilingual sentence pairs (English ↔ Portuguese) for language learning |
+| **m5_gen_dataset.py** | Generates multilingual sentence pairs (English ↔ Portuguese) for Synthetic Dataset Engineering |
 
 ### Data Files
 
@@ -47,7 +47,7 @@ Themes are organized into categories such as:
 - And more...
 
 ### Complexity Levels
-Each theme is assigned a **Narrative Complexity (NC) level**:
+Each theme is assigned a **Narrative Capacity (NC)**:
 - **Low**: Simple sentences (~15 words)
 - **Medium**: Multi-sentence paragraphs (~30 words)
 - **High**: Short stories with rich vocabulary (~60 words)
@@ -76,25 +76,6 @@ Install required packages:
 ```bash
 pip install pandas openpyxl requests python-dotenv google-genai pydantic
 ```
-
-### For Local Inference (Ollama)
-1. Download and install [Ollama](https://ollama.ai)
-2. Pull the required model:
-   ```bash
-   ollama pull gemma4:e4b
-   ```
-3. Start Ollama service:
-   ```bash
-   ollama serve
-   ```
-
-### For Google Gemini API
-1. Create a Google Cloud project and enable the Generative AI API
-2. Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
-3. Create a `.env` file in the project root:
-   ```
-   GEMINI_API_KEY=your_api_key_here
-   ```
 
 ## How to Run
 
@@ -132,7 +113,7 @@ python m4_granularize.py
   ```
 
 ### Step 4: Generate Multilingual Dataset
-Create sentence pairs for language learning:
+Create sentence pairs for synthetic dataset:
 ```bash
 python m5_gen_dataset.py
 ```
@@ -143,8 +124,8 @@ python m5_gen_dataset.py
 **Configuration**:
 - Edit `CONFIG` in the script:
   ```python
-  "STARTING_FROM": 2,      # Start from theme index
-  "UPTILL_TO": 2,          # End at theme index
+  "STARTING_FROM": 1,      # Start from theme index
+  "UPTILL_TO": 130,          # End at theme index
   "SENTENCES_PER_THEME": 1160,  # Adjust based on needs
   "ENGINE": "LOCAL"        # or "API"
   ```
@@ -199,8 +180,8 @@ CONFIG = {
 ### Dataset Generation
 ```python
 CONFIG = {
-    "STARTING_FROM": 2,
-    "UPTILL_TO": 2,
+    "STARTING_FROM": 1,
+    "UPTILL_TO": 130,
     "SENTENCES_PER_THEME": 1160,
     "API_BATCH_SIZE": 30,
     "LOCAL_BATCH_SIZE": 20,
@@ -233,7 +214,7 @@ CONFIG = {
 ```
 One sentence or paragraph per line
 English sentences paired with Portuguese translations
-Used for bilingual language learning
+Used as a synthetic Dataset for model training.
 ```
 
 ## Troubleshooting
@@ -257,18 +238,10 @@ Used for bilingual language learning
 ollama pull gemma4:e4b
 ```
 
-## Future Enhancements
-
-- [ ] Support for additional languages
-- [ ] Batch processing UI
-- [ ] Progress tracking and resumable jobs
-- [ ] Quality validation and filtering
-- [ ] Export to standard dataset formats (CSV, SQLite)
-- [ ] Multi-model comparison tools
 
 ## License
 
-This project is open-source. Feel free to use, modify, and distribute.
+This project is open-source. A gift from Institute of space Technology Islamabad. Feel free to use, modify, and distribute.
 
 ## Contact & Support
 
