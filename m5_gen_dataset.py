@@ -16,8 +16,8 @@ CONFIG = {
     "ENGINE": "LOCAL",
 
     # Range of themes to process (1-indexed, inclusive)
-    "STARTING_FROM": 2,
-    "UPTILL_TO": 2,
+    "STARTING_FROM": 1,
+    "UPTILL_TO": 50,
 
     # Language pair
     "SOURCE_LANG": "English",
