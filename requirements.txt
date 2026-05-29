@@ -1,0 +1,10 @@
+pandas
+openpyxl
+requests
+python-dotenv
+google-genai
+pydantic
+transformers
+torch
+tqdm
+sentencepiece

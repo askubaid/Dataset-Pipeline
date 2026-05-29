@@ -23,6 +23,10 @@ The pipeline supports both **local inference** (using Ollama) and **cloud API** 
 | **m3_generate_examples_API.py** | Generates sample examples using Google Gemini API (alternative to local) |
 | **m4_granularize.py** | Adds 20 sub-topics to each theme for more granular categorization |
 | **m5_gen_dataset.py** | Generates multilingual sentence pairs (English ↔ Portuguese) for Synthetic Dataset Engineering |
+| **m6_prepareMarianMT.py** | Downloads and saves a local MarianMT English–Portuguese model for offline translation |
+| **m7_inference_loop.py** | Starts an interactive English-to-Portuguese translation loop using the local MarianMT model |
+| **m8_gen_corpus.py** | Translates a corpus file with the local MarianMT model and saves Portuguese output |
+| **m9_gen_single.py** | Generates single-language English examples using the Gemini API or local engine for custom dataset creation |
 
 ### Data Files
 
@@ -74,7 +78,7 @@ Choose one of two inference engines for example generation:
 ### Dependencies
 Install required packages:
 ```bash
-pip install pandas openpyxl requests python-dotenv google-genai pydantic
+pip install pandas openpyxl requests python-dotenv google-genai pydantic transformers torch tqdm sentencepiece
 ```
 
 ## How to Run
@@ -145,8 +149,18 @@ python m2_gen_examples_local.py
 # Step 3: Add sub-topics
 python m4_granularize.py
 
-# Step 4: Create dataset
+# Step 4: Create dataset - by generating both english and portuguese using LLM
 python m5_gen_dataset.py
+
+# Step 5: download MarianMt Model
+python m6_prepareMarianMT.py
+
+# Step 4 alternate - to generate English only sentences using LLM
+python m9_gen_single.py
+
+# Step 4 alternate - to generate the corresponding Portuguese lines for the English sentences using local MarianMT 
+python m8_gen_corpus.py
+
 ```
 
 ## Configuration Guide
@@ -172,7 +186,7 @@ CONFIG = {
 ### Gemini API Settings
 ```python
 CONFIG = {
-    "GEMINI_MODEL": "gemini-2.5-flash",
+    "GEMINI_MODEL": "gemini-3.1-flash",
     # Requires GEMINI_API_KEY in .env file
 }
 ```
